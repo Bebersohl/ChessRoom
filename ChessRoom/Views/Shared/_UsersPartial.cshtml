@@ -1,0 +1,20 @@
+﻿<div class="panel panel-default" ng-controller="index">
+    <div class="panel-heading" role="tab" id="headingUser">
+        <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="" href="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
+                Users ({{users.length}})
+            </a>
+        </h4>
+    </div>
+    <div id="collapseUser" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingUser">
+
+        <div id="user-panel">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <input type="text" ng-model="query.name" class="form-control" placeholder="Search users.." name="srch-term" id="srch-term">
+                </li>
+                <li ng-repeat="user in users | filter: query | orderBy: orderList" class="list-group-item"><div class="circle-offline"></div>{{user.name}} - 1500</li>
+            </ul>
+        </div>
+    </div>
+</div>

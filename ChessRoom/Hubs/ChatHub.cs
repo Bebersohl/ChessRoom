@@ -17,7 +17,7 @@ namespace ChessRoom.Hubs
         {
 
             var name = Context.User.Identity.Name;
-            using (var db = new UserContext())
+            using (var db = new bebersohl_DBEntities())
             {
                 var user = db.Users
                     .Include(u => u.Connections)
@@ -28,6 +28,7 @@ namespace ChessRoom.Hubs
                     user = new User
                     {
                         UserName = name,
+                        EloRating = 1500,
                         Connections = new List<Connection>()
                     };
                     db.Users.Add(user);
@@ -45,7 +46,7 @@ namespace ChessRoom.Hubs
         }
         public override Task OnDisconnected(bool stopCalled)
         {
-            using (var db = new UserContext())
+            using (var db = new bebersohl_DBEntities())
             {
                 var connection = db.Connections.Find(Context.ConnectionId);
                 connection.Connected = false;
@@ -57,7 +58,7 @@ namespace ChessRoom.Hubs
         {
             // Call the addNewMessageToPage method to update clients.
             var name = Context.User.Identity.Name;
-            using (var db = new UserContext())
+            using (var db = new bebersohl_DBEntities())
             {
                 var user = db.Users.Find(who);
                 if (user == null)

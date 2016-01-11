@@ -14,7 +14,7 @@ namespace ChessRoom.Controllers
 {
     public class UsersController : ApiController
     {
-        private UserContext db = new UserContext();
+        private bebersohl_DBEntities db = new bebersohl_DBEntities();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()

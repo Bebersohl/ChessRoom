@@ -10,7 +10,7 @@ usersList.controller("index", ["$scope", "$http", function ($scope, $http) {
     }).then(function successCallback(response) {
         console.log(response);
         $scope.users = response.data;
-        
+
     }, function errorCallback(response) {
         console.log(response);
     });

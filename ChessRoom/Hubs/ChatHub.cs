@@ -49,7 +49,7 @@ namespace ChessRoom.Hubs
             using (var db = new bebersohl_DBEntities())
             {
                 var connection = db.Connections.Find(Context.ConnectionId);
-                connection.Connected = false;
+                db.Connections.Remove(connection);
                 db.SaveChanges();
             }
             return base.OnDisconnected(stopCalled);

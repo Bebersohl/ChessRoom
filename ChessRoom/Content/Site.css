@@ -1,6 +1,7 @@
 ﻿html {
     position: relative;
     min-height: 100%;
+    font-family: 'Vollkorn', serif;
 }
 body {
     padding-top: 65px;

@@ -6,7 +6,13 @@ body {
     padding-top: 65px;
     margin-bottom: 30px;
     overflow-x: hidden;
-    background-color: #888888;
+    /*background-color: #888888;*/
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3c2e4f+8,2b3754+100&1+0,0.95+93 */
+    background: -moz-linear-gradient(left,  rgba(60,46,79,1) 0%, rgba(60,46,79,1) 8%, rgba(44,54,84,0.95) 93%, rgba(43,55,84,0.95) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(60,46,79,1) 0%,rgba(60,46,79,1) 8%,rgba(44,54,84,0.95) 93%,rgba(43,55,84,0.95) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(60,46,79,1) 0%,rgba(60,46,79,1) 8%,rgba(44,54,84,0.95) 93%,rgba(43,55,84,0.95) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c2e4f', endColorstr='#f22b3754',GradientType=1 ); /* IE6-9 */
+
 }
 
 /* Set padding to keep content from hitting the edges */

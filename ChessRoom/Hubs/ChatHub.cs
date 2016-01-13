@@ -56,40 +56,7 @@ namespace ChessRoom.Hubs
         }
         public void Send(string who, string message)
         {
-            // Call the addNewMessageToPage method to update clients.
-            var name = Context.User.Identity.Name;
-            using (var db = new bebersohl_DBEntities())
-            {
-                var user = db.Users.Find(who);
-                if (user == null)
-                {
-                    Clients.Caller.showErrorMessage("Could not find that user.");
-                }
-                else
-                {
-                    db.Entry(user)
-                        .Collection(u => u.Connections)
-                        .Query()
-                        .Where(c => c.Connected == true)
-                        .Load();
-
-                    if (user.Connections == null)
-                    {
-                        Clients.Caller.showErrorMessage("The user is no longer connected.");
-                    }
-                    else
-                    {
-                        //foreach (var connection in user.Connections)
-                        //{
-                        //    Clients.Client(connection.ConnectionID)
-                        //        .addChatMessage(name + ": " + message);
-                        //}
-                        Clients.All.addNewMessageToPage(who, message);
-                    }
-                }
-            }
-            
-
+            Clients.All.addNewMessageToPage(who, message);
         }
     }
 }

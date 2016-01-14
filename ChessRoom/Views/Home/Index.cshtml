@@ -22,9 +22,9 @@
     // Reference the auto-generated proxy for the hub.
     var chat = $.connection.chatHub;
     // Create a function that the hub can call back to display messages.
-    chat.client.addNewMessageToPage = function (name, message) {
+    chat.client.addNewMessageToPage = function (message, messageType, sender) {
         // Add the message to the page.
-        $('#discussion').append('<li><strong>' + htmlEncode(name)
+        $('#discussion').append('<li class="' + messageType + '"><strong>' + htmlEncode(sender)
             + '</strong> ' + '<span class="text-muted">[' + new Date().toUTCString().substring(17, 25) + ']:</span> ' + htmlEncode(message) + '</li>');
     };
 
@@ -44,7 +44,7 @@
             if ($('#message').val() !== '') {
                 console.log('message sent');
                 // Call the Send method on the hub.
-                chat.server.send('@User.Identity.GetUserName()', $('#message').val());
+                chat.server.send($('#message').val(), '@User.Identity.GetUserName()');
                 // Clear text box and reset focus for next comment.
                 $('#message').val('').focus();
                 $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 'fast');

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using ChessRoom.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
 
@@ -54,9 +56,29 @@ namespace ChessRoom.Hubs
             }
             return base.OnDisconnected(stopCalled);
         }
-        public void Send(string who, string message)
+        public void Send(string message, string sender)
         {
-            Clients.All.addNewMessageToPage(who, message);
+            
+            if (message.Contains("/pm"))
+            {
+                
+                string[] words = message.Split(' ');
+                if (words.Length >= 2)
+                {
+                    Clients.User(words[1]).addNewMessageToPage(message.Substring(message.IndexOf(' ', message.IndexOf(' ') + 1)), "text-info", sender);
+                    Clients.Caller.addNewMessageToPage("To " + words[1] + ": " + message.Substring(message.IndexOf(' ', message.IndexOf(' ') + 1)), "text-info", sender);
+                }
+                else
+                {
+                    Clients.Caller.addNewMessageToPage("No target user found", "text-danger", "Error");
+                }
+                
+            }
+            else
+            {
+                Clients.All.addNewMessageToPage(message, "all", Context.User.Identity.GetUserName());
+            }
+            
         }
     }
 }

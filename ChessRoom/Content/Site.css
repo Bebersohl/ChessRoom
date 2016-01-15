@@ -116,7 +116,9 @@ ul
     width: 400px;
 }
 
-#contextMenu {
-  position: absolute;
-  display:none;
+.glyph-button {
+    -webkit-appearance: none;
+    outline: none;
+    border: 0;
+    background: transparent;
 }

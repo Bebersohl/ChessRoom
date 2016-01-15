@@ -16,6 +16,10 @@ usersList.controller("index", ["$scope", "$http", "$timeout", function ($scope, 
         });
     }
     poller();
+    $scope.pmUser = function(username) {
+        $('#message').val('/pm ' + username + ' ');
+        $('#message').focus();
+    }
     //  $scope.users = [
     //{name: "Mark", gender: "male", number: "(565) 355-3748"},
     //{name: "Glen", gender: "male", number: "(233) 245-3753"},

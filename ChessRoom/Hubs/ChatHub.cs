@@ -61,24 +61,29 @@ namespace ChessRoom.Hubs
             
             if (message.Contains("/pm"))
             {
-                
+
                 string[] words = message.Split(' ');
                 if (words.Length >= 2)
                 {
-                    Clients.User(words[1]).addNewMessageToPage(message.Substring(message.IndexOf(' ', message.IndexOf(' ') + 1)), "text-info", sender);
-                    Clients.Caller.addNewMessageToPage("To " + words[1] + ": " + message.Substring(message.IndexOf(' ', message.IndexOf(' ') + 1)), "text-info", sender);
+                    Clients.User(words[1])
+                        .addNewMessageToPage(message.Substring(message.IndexOf(' ', message.IndexOf(' ') + 1)),
+                            "text-info", sender);
+                    Clients.Caller.addNewMessageToPage(
+                        "To " + words[1] + ": " + message.Substring(message.IndexOf(' ', message.IndexOf(' ') + 1)),
+                        "text-info", sender);
                 }
                 else
                 {
                     Clients.Caller.addNewMessageToPage("No target user found", "text-danger", "[Error]");
                 }
-                
+
             }
             else
             {
                 Clients.All.addNewMessageToPage(message, "all", Context.User.Identity.GetUserName());
             }
-            
         }
+            
+        
     }
 }

@@ -18,49 +18,66 @@
     <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
     <script src="~/signalr/hubs"></script>
     <script type="text/javascript">
-        $(function () {
-    // Reference the auto-generated proxy for the hub.
-    var chat = $.connection.chatHub;
-    // Create a function that the hub can call back to display messages.
-    chat.client.addNewMessageToPage = function (message, messageType, sender) {
-        // Add the message to the page.
-        $('#discussion').append('<li class="' + messageType + '"><strong>' + htmlEncode(sender)
-            + '</strong> ' + '<span class="text-muted">[' + new Date().toUTCString().substring(17, 25) + ']:</span> ' + htmlEncode(message) + '</li>');
-    };
+        $(function() {
+            // Reference the auto-generated proxy for the hub.
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call back to display messages.
+            chat.client.addNewMessageToPage = function(message, messageType, sender) {
+                // Add the message to the page.
+                $('#discussion').append('<li class="' + messageType + '"><strong>' + htmlEncode(sender)
+                    + '</strong> ' + '<span class="text-muted">[' + new Date().toUTCString().substring(17, 25) + ']:</span> ' + htmlEncode(message) + '</li>');
+            };
 
-    // Set initial focus to message input box.
-    $('#message').focus();
-    //keybind to enter
-    $(document).keypress(function (e) {
-        if (e.which == 13) {
-            $("#sendmessage").click();
-            return event.keyCode != 13;
-        }
-    });
-    // Start the connection.
-    $.connection.hub.start().done(function () {
-        $('#sendmessage').click(function () {
+            // Set initial focus to message input box.
+            $('#message').focus();
+            //keybind to enter
+            $(document).keypress(function(e) {
+                if (e.which == 13) {
+                    $("#sendmessage").click();
+                    return event.keyCode != 13;
+                }
+            });
+            // Start the connection.
+            $.connection.hub.start().done(function() {
+                $('#sendmessage').click(function() {
 
-            if ($('#message').val() !== '') {
-                console.log('message sent');
-                // Call the Send method on the hub.
-                chat.server.send($('#message').val(), '@User.Identity.GetUserName()');
-                // Clear text box and reset focus for next comment.
-                $('#message').val('').focus();
-                $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 'fast');
-                return false;
+                    if ($('#message').val() !== '') {
+                        console.log('message sent');
+                        // Call the Send method on the hub.
+                        chat.server.send($('#message').val(), '@User.Identity.GetUserName()');
+                        // Clear text box and reset focus for next comment.
+                        $('#message').val('').focus();
+                        $('.chat-body').animate({ scrollTop: $('.chat-body')[0].scrollHeight }, 'fast');
+                        return false;
+                    }
+                });
+            });
+
+// This optional function html-encodes messages for display in the page.
+            function htmlEncode(value) {
+                var encodedValue = $('<div />').text(value).html();
+                return encodedValue;
             }
-        });
-    });
-    // This optional function html-encodes messages for display in the page.
-    function htmlEncode(value) {
-        var encodedValue = $('<div />').text(value).html();
-        return encodedValue;
-    }
 
-});
+        });
     </script>
-    <link href="~/Content/chessboard-0.3.0.min.css" rel="stylesheet" />
+    <link href="~/Content/chessboard-0.3.0.min.css" rel="stylesheet"/>
     <script src="~/Scripts/chessboard-0.3.0.min.js"></script>
     <script src="~/Scripts/chessgame.js"></script>
+    <script src="~/Scripts/Context.js"></script>
+    <script>
+
+        context.init({
+            preventDoubleContext: false,
+            fadeSpeed: 0
+        });
+
+        context.attach('.list-user', [
+            {text: 'Challenge', href:'#'},
+            { text: 'Send PM', action: function() {
+                console.log("pm sent");
+            }},
+            { text: 'Add Friend', href: '#'}
+        ]);
+    </script>
 }

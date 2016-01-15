@@ -6,11 +6,11 @@ usersList.controller("index", ["$scope", "$http", "$timeout", function ($scope, 
     var poller = function() {
         $http({
             method: 'GET',
-            url: 'http://playchesswithbrandon.net/Api/Users'
+            url: 'http://localhost:52612//Api/Users'
         }).then(function successCallback(response) {
             console.log(response);
             $scope.users = response.data;
-            $timeout(poller, 1000);
+            $timeout(poller, 5000);
         }, function errorCallback(response) {
             console.log(response);
         });

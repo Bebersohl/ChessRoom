@@ -1,4 +1,7 @@
-﻿<div class="panel panel-default" ng-controller="index" ng-cloak>
+﻿
+
+
+<div class="panel panel-default" ng-controller="index" ng-cloak>
     <div class="panel-heading" role="tab" id="headingUser">
         <h4 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="" href="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
@@ -13,8 +16,12 @@
                 <li class="list-group-item">
                     <input type="text" ng-model="query.UserName" class="form-control" placeholder="Search users.." name="srch-term" id="srch-term">
                 </li>
-                <li ng-repeat="user in users | filter: query | orderBy: ['-Connections[0].Connected','-UserName']:true" class="list-group-item"><div ng-class="user.Connections[0].Connected ? 'circle-online' : 'circle-offline'"></div>{{user.UserName}} - {{user.EloRating}}</li>
+                <li ng-repeat="user in users | filter: query | orderBy: ['-Connections[0].Connected','-UserName']:true" class="list-group-item list-user">
+                    
+                    <div ng-class="user.Connections[0].Connected ? 'circle-online' : 'circle-offline'"></div>{{user.UserName}} - {{user.EloRating}}
+                </li>
             </ul>
         </div>
     </div>
 </div>
+

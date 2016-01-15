@@ -115,3 +115,8 @@ ul
 .chess-board {
     width: 400px;
 }
+
+#contextMenu {
+  position: absolute;
+  display:none;
+}

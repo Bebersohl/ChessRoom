@@ -70,7 +70,7 @@ namespace ChessRoom.Hubs
                 }
                 else
                 {
-                    Clients.Caller.addNewMessageToPage("No target user found", "text-danger", "Error");
+                    Clients.Caller.addNewMessageToPage("No target user found", "text-danger", "[Error]");
                 }
                 
             }

@@ -19,7 +19,11 @@
                 <li ng-repeat="user in users | filter: query | orderBy: ['-Connections[0].Connected','-UserName']:true" class="list-group-item list-user">
 
                     <div ng-class="user.Connections[0].Connected ? 'circle-online' : 'circle-offline'"></div>{{user.UserName}} - {{user.EloRating}}
-                    <span class="pull-right"><button ng-click="pmUser(user.UserName)" type="button" class="glyph-button pmButton"><span class="glyphicon glyphicon-comment text-primary"></span></button></span>
+                    <span class="pull-right">
+                        <button ng-click="pmUser(user.UserName)" type="button" class="glyph-button">
+                            <span class="glyphicon glyphicon-comment text-primary"></span>
+                        </button>
+                    </span>
                 </li>
             </ul>
         </div>

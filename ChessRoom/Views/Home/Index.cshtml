@@ -1,15 +1,16 @@
 ﻿
 @using Microsoft.AspNet.Identity
+
 <div class="row">
     <div class="col-md-2">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             @Html.Partial("_UsersPartial")
-            @Html.Partial("_FriendsPartial")
+            @*@Html.Partial("_FriendsPartial")*@
         </div>
     </div>
     <div class="col-md-7">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            @Html.Partial("_SpectatePartial")
+            @Html.Partial("_MainPartial")
             @Html.Partial("_ChatPartial")
         </div>
     </div>

@@ -122,3 +122,24 @@ ul
     border: 0;
     background: transparent;
 }
+
+.alert p .btn {
+    display:inline;
+}
+
+.main-content-window {
+    height: 450px;
+}
+    .main-content-window .form-group{
+        padding-left: 15px;
+        overflow-y: auto;
+    }
+
+.notification-panel {
+    max-height: 350px;
+    overflow-y: auto;
+    border: 0;
+    box-shadow: none;
+    padding-right: 15px;
+}
+

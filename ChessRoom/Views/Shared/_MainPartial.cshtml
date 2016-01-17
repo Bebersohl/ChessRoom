@@ -1,0 +1,27 @@
+﻿<div class="panel panel-default">
+
+    <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+            <li role="presentation"><a href="#spectate" aria-controls="spectate" role="tab" data-toggle="tab">Spectate</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active main-content-window" id="home">
+                <div class="row">
+                    <div class="col-md-5">
+                        @Html.Partial("_NewGamePartial")
+                    </div>
+                    <div class="col-md-offset-1 col-md-6">
+                        @Html.Partial("_NotificationsPartial")
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane main-content-window" id="spectate">
+                @Html.Partial("_SpectatePartial")
+            </div>
+        </div>
+    </div>
+</div>
